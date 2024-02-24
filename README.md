@@ -11,12 +11,13 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+This package extends drift.dev ecosystem to add support for postgis types. It aims to have a type-safe way of handling geospatial queries
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+```dart
+
+```
 
 ## Getting started
 
@@ -29,7 +30,23 @@ TODO: Include short and useful examples for package users. Add longer examples
 to `/example` folder. 
 
 ```dart
-const like = 'sample';
+class DropoffStations extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  TextColumn get name => text()();
+  Column<Point> get location => customType(PostGISPointType(4326))();
+}
+
+class RiderRoutes extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  DateTimeColumn get updatedAt => dateTime().nullable()();
+  Column<LineString> get path => customType(PostGISLineStringType(4326))();
+}
+
+class Towns extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  TextColumn get name => text()();
+  Column<Polygon> get boundary => customType(PostGISPolygonType(4326))();
+}
 ```
 
 ## Additional information
