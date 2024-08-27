@@ -14,10 +14,14 @@ and the Flutter guide for
 This package extends drift.dev ecosystem to add support for postgis types. It aims to have a type-safe way of handling geospatial queries
 
 ## Features
-
-```dart
-
-```
+It currently supports the following geometry types:
+- Point
+- LineString
+- Polygon
+- MultiPoint
+- MultiLineString
+- MultiPolygon
+- GeometryCollection
 
 ## Getting started
 
@@ -54,3 +58,10 @@ class Towns extends Table {
 TODO: Tell users more about the package: where to find more information, how to 
 contribute to the package, how to file issues, what response they can expect 
 from the package authors, and more.
+
+
+## Running tests
+
+```
+docker run -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres postgis/postgis
+```
