@@ -4,6 +4,7 @@
 library;
 
 export 'src/drift_postgis_base.dart';
+export 'src/functions/postgis_functions.dart';
 export 'src/types.dart';
 
 // TODO: Export any libraries intended for clients of this package.
