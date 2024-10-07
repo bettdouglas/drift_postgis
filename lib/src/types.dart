@@ -17,7 +17,7 @@ final _binaryParser = BinaryParser();
 /// Represents the PostGIS Geometry type
 class PostGISGeometryType implements CustomSqlType<Geometry> {
   /// Constructs a PostGIS Geometry type with the specified [srid]
-  PostGISGeometryType(this.srid);
+  PostGISGeometryType({this.srid});
 
   /// the SRID of the geometry column
   int? srid;
@@ -66,7 +66,7 @@ class PostGISGeometryType implements CustomSqlType<Geometry> {
 /// Represents the PostGIS Point type
 class PostGISPointType implements CustomSqlType<Point> {
   /// Defines a Column with custom SRID
-  PostGISPointType(this.srid);
+  PostGISPointType({this.srid});
 
   ///  the SRID
   final int? srid;
@@ -95,7 +95,7 @@ class PostGISPointType implements CustomSqlType<Point> {
 /// Represents the PostGIS Point type
 class PostGISPolygonType implements CustomSqlType<Polygon> {
   /// A PostGIS Polygon defined with a specific SRID
-  PostGISPolygonType(this.srid);
+  PostGISPolygonType({this.srid});
 
   /// the SRID
   final int? srid;
@@ -124,7 +124,7 @@ class PostGISPolygonType implements CustomSqlType<Polygon> {
 /// Models the PostGIS LineString type
 class PostGISLineStringType implements CustomSqlType<LineString> {
   /// Defines a custom PostGIS LineString with a specific ID
-  PostGISLineStringType(this.srid);
+  PostGISLineStringType({this.srid});
 
   /// the SRID
   final int? srid;
@@ -159,7 +159,7 @@ Geometry parseSql(Object fromSql) {
 /// Models the PostGIS LineString type
 class PostGISMultiPointType implements CustomSqlType<MultiPoint> {
   /// Defines a custom PostGIS MultiPoint with a specific ID
-  PostGISMultiPointType(this.srid);
+  PostGISMultiPointType({this.srid});
 
   /// the SRID
   final int? srid;
@@ -188,7 +188,7 @@ class PostGISMultiPointType implements CustomSqlType<MultiPoint> {
 /// Models the PostGIS LineString type
 class PostGISMultiLineStringType implements CustomSqlType<MultiLineString> {
   /// Defines a custom PostGIS MultiLineString with a specific ID
-  PostGISMultiLineStringType(this.srid);
+  PostGISMultiLineStringType({this.srid});
 
   /// the SRID
   final int? srid;
@@ -217,7 +217,7 @@ class PostGISMultiLineStringType implements CustomSqlType<MultiLineString> {
 /// Models the PostGIS LineString type
 class PostGISMultiPolygonType implements CustomSqlType<MultiPolygon> {
   /// Defines a custom PostGIS MultiPolygon with a specific ID
-  PostGISMultiPolygonType(this.srid);
+  PostGISMultiPolygonType({this.srid});
 
   /// the SRID
   final int? srid;
@@ -247,7 +247,7 @@ class PostGISMultiPolygonType implements CustomSqlType<MultiPolygon> {
 class PostGISGeometryCollectionType
     implements CustomSqlType<GeometryCollection> {
   /// Defines a custom PostGIS GeometryCollection with a specific ID
-  PostGISGeometryCollectionType(this.srid);
+  PostGISGeometryCollectionType({this.srid});
 
   /// the SRID
   final int? srid;

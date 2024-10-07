@@ -12,34 +12,35 @@ class Users extends Table {
 class UserLocations extends Table {
   IntColumn get id => integer().autoIncrement()();
   IntColumn get userId => integer().references(Users, #id)();
-  Column<jts.Point> get location => customType(PostGISPointType(4326))();
+  Column<jts.Point> get location => customType(PostGISPointType(srid: 4326))();
 }
 
 class Towns extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get name => text()();
-  Column<jts.Polygon> get boundary => customType(PostGISPolygonType(4326))();
+  Column<jts.Polygon> get boundary =>
+      customType(PostGISPolygonType(srid: 4326))();
 }
 
 class Parks extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get name => text()();
   Column<jts.MultiPolygon> get areas =>
-      customType(PostGISMultiPolygonType(4326))();
+      customType(PostGISMultiPolygonType(srid: 4326))();
 }
 
 class BusRoutes extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get routeName => text()();
   Column<jts.MultiLineString> get path =>
-      customType(PostGISMultiLineStringType(4326))();
+      customType(PostGISMultiLineStringType(srid: 4326))();
 }
 
 class TouristAttractions extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get name => text()();
   Column<jts.MultiPoint> get locations =>
-      customType(PostGISMultiPointType(4326))();
+      customType(PostGISMultiPointType(srid: 4326))();
 }
 
 @DriftDatabase(

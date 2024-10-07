@@ -207,7 +207,7 @@ class $UserLocationsTable extends UserLocations
   @override
   late final GeneratedColumn<jts.Point> location = GeneratedColumn<jts.Point>(
       'location', aliasedName, false,
-      type: PostGISPointType(4326), requiredDuringInsert: true);
+      type: PostGISPointType(srid: 4326), requiredDuringInsert: true);
   @override
   List<GeneratedColumn> get $columns => [id, userId, location];
   @override
@@ -248,8 +248,8 @@ class $UserLocationsTable extends UserLocations
           .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
       userId: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}user_id'])!,
-      location: attachedDatabase.typeMapping
-          .read(PostGISPointType(4326), data['${effectivePrefix}location'])!,
+      location: attachedDatabase.typeMapping.read(
+          PostGISPointType(srid: 4326), data['${effectivePrefix}location'])!,
     );
   }
 
@@ -270,7 +270,8 @@ class UserLocation extends DataClass implements Insertable<UserLocation> {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
     map['user_id'] = Variable<int>(userId);
-    map['location'] = Variable<jts.Point>(location, PostGISPointType(4326));
+    map['location'] =
+        Variable<jts.Point>(location, PostGISPointType(srid: 4326));
     return map;
   }
 
@@ -383,7 +384,7 @@ class UserLocationsCompanion extends UpdateCompanion<UserLocation> {
     }
     if (location.present) {
       map['location'] =
-          Variable<jts.Point>(location.value, PostGISPointType(4326));
+          Variable<jts.Point>(location.value, PostGISPointType(srid: 4326));
     }
     return map;
   }
@@ -423,7 +424,7 @@ class $TownsTable extends Towns with TableInfo<$TownsTable, Town> {
   @override
   late final GeneratedColumn<jts.Polygon> boundary =
       GeneratedColumn<jts.Polygon>('boundary', aliasedName, false,
-          type: PostGISPolygonType(4326), requiredDuringInsert: true);
+          type: PostGISPolygonType(srid: 4326), requiredDuringInsert: true);
   @override
   List<GeneratedColumn> get $columns => [id, name, boundary];
   @override
@@ -464,8 +465,8 @@ class $TownsTable extends Towns with TableInfo<$TownsTable, Town> {
           .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
       name: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
-      boundary: attachedDatabase.typeMapping
-          .read(PostGISPolygonType(4326), data['${effectivePrefix}boundary'])!,
+      boundary: attachedDatabase.typeMapping.read(
+          PostGISPolygonType(srid: 4326), data['${effectivePrefix}boundary'])!,
     );
   }
 
@@ -485,7 +486,8 @@ class Town extends DataClass implements Insertable<Town> {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
     map['name'] = Variable<String>(name);
-    map['boundary'] = Variable<jts.Polygon>(boundary, PostGISPolygonType(4326));
+    map['boundary'] =
+        Variable<jts.Polygon>(boundary, PostGISPolygonType(srid: 4326));
     return map;
   }
 
@@ -597,7 +599,7 @@ class TownsCompanion extends UpdateCompanion<Town> {
     }
     if (boundary.present) {
       map['boundary'] =
-          Variable<jts.Polygon>(boundary.value, PostGISPolygonType(4326));
+          Variable<jts.Polygon>(boundary.value, PostGISPolygonType(srid: 4326));
     }
     return map;
   }
@@ -636,7 +638,8 @@ class $ParksTable extends Parks with TableInfo<$ParksTable, Park> {
   @override
   late final GeneratedColumn<jts.MultiPolygon> areas =
       GeneratedColumn<jts.MultiPolygon>('areas', aliasedName, false,
-          type: PostGISMultiPolygonType(4326), requiredDuringInsert: true);
+          type: PostGISMultiPolygonType(srid: 4326),
+          requiredDuringInsert: true);
   @override
   List<GeneratedColumn> get $columns => [id, name, areas];
   @override
@@ -678,7 +681,8 @@ class $ParksTable extends Parks with TableInfo<$ParksTable, Park> {
       name: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
       areas: attachedDatabase.typeMapping.read(
-          PostGISMultiPolygonType(4326), data['${effectivePrefix}areas'])!,
+          PostGISMultiPolygonType(srid: 4326),
+          data['${effectivePrefix}areas'])!,
     );
   }
 
@@ -699,7 +703,7 @@ class Park extends DataClass implements Insertable<Park> {
     map['id'] = Variable<int>(id);
     map['name'] = Variable<String>(name);
     map['areas'] =
-        Variable<jts.MultiPolygon>(areas, PostGISMultiPolygonType(4326));
+        Variable<jts.MultiPolygon>(areas, PostGISMultiPolygonType(srid: 4326));
     return map;
   }
 
@@ -811,7 +815,7 @@ class ParksCompanion extends UpdateCompanion<Park> {
     }
     if (areas.present) {
       map['areas'] = Variable<jts.MultiPolygon>(
-          areas.value, PostGISMultiPolygonType(4326));
+          areas.value, PostGISMultiPolygonType(srid: 4326));
     }
     return map;
   }
@@ -852,7 +856,8 @@ class $BusRoutesTable extends BusRoutes
   @override
   late final GeneratedColumn<jts.MultiLineString> path =
       GeneratedColumn<jts.MultiLineString>('path', aliasedName, false,
-          type: PostGISMultiLineStringType(4326), requiredDuringInsert: true);
+          type: PostGISMultiLineStringType(srid: 4326),
+          requiredDuringInsert: true);
   @override
   List<GeneratedColumn> get $columns => [id, routeName, path];
   @override
@@ -894,7 +899,8 @@ class $BusRoutesTable extends BusRoutes
       routeName: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}route_name'])!,
       path: attachedDatabase.typeMapping.read(
-          PostGISMultiLineStringType(4326), data['${effectivePrefix}path'])!,
+          PostGISMultiLineStringType(srid: 4326),
+          data['${effectivePrefix}path'])!,
     );
   }
 
@@ -915,8 +921,8 @@ class BusRoute extends DataClass implements Insertable<BusRoute> {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
     map['route_name'] = Variable<String>(routeName);
-    map['path'] =
-        Variable<jts.MultiLineString>(path, PostGISMultiLineStringType(4326));
+    map['path'] = Variable<jts.MultiLineString>(
+        path, PostGISMultiLineStringType(srid: 4326));
     return map;
   }
 
@@ -1031,7 +1037,7 @@ class BusRoutesCompanion extends UpdateCompanion<BusRoute> {
     }
     if (path.present) {
       map['path'] = Variable<jts.MultiLineString>(
-          path.value, PostGISMultiLineStringType(4326));
+          path.value, PostGISMultiLineStringType(srid: 4326));
     }
     return map;
   }
@@ -1072,7 +1078,7 @@ class $TouristAttractionsTable extends TouristAttractions
   @override
   late final GeneratedColumn<jts.MultiPoint> locations =
       GeneratedColumn<jts.MultiPoint>('locations', aliasedName, false,
-          type: PostGISMultiPointType(4326), requiredDuringInsert: true);
+          type: PostGISMultiPointType(srid: 4326), requiredDuringInsert: true);
   @override
   List<GeneratedColumn> get $columns => [id, name, locations];
   @override
@@ -1114,7 +1120,8 @@ class $TouristAttractionsTable extends TouristAttractions
       name: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
       locations: attachedDatabase.typeMapping.read(
-          PostGISMultiPointType(4326), data['${effectivePrefix}locations'])!,
+          PostGISMultiPointType(srid: 4326),
+          data['${effectivePrefix}locations'])!,
     );
   }
 
@@ -1137,7 +1144,7 @@ class TouristAttraction extends DataClass
     map['id'] = Variable<int>(id);
     map['name'] = Variable<String>(name);
     map['locations'] =
-        Variable<jts.MultiPoint>(locations, PostGISMultiPointType(4326));
+        Variable<jts.MultiPoint>(locations, PostGISMultiPointType(srid: 4326));
     return map;
   }
 
@@ -1251,7 +1258,7 @@ class TouristAttractionsCompanion extends UpdateCompanion<TouristAttraction> {
     }
     if (locations.present) {
       map['locations'] = Variable<jts.MultiPoint>(
-          locations.value, PostGISMultiPointType(4326));
+          locations.value, PostGISMultiPointType(srid: 4326));
     }
     return map;
   }
