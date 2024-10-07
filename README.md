@@ -17,7 +17,9 @@ Add the following dependencies to your `pubspec.yaml` file:
 ```yaml
 dependencies:
   drift: ^2.8.0
-  drift_postgis: ^1.0.0
+  drift_postgis:
+    git:
+      url: https://github.com/bettdouglas/drift_postgis
 ```
 
 Then run:
@@ -39,19 +41,19 @@ import 'package:drift_postgis/drift_postgis.dart';
 class Towns extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get name => text()();
-  Column<Polygon> get boundary => customType(PostGISPolygonType(4326))();
+  Column<Polygon> get boundary => customType(PostGISPolygonType(srid: 4326))();
 }
 
 class Parks extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get name => text()();
-  Column<MultiPolygon> get areas => customType(PostGISMultiPolygonType(4326))();
+  Column<MultiPolygon> get areas => customType(PostGISMultiPolygonType(srid: 4326))();
 }
 
 class BusRoutes extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get routeName => text()();
-  Column<MultiLineString> get path => customType(PostGISMultiLineStringType(4326))();
+  Column<MultiLineString> get path => customType(PostGISMultiLineStringType(srid: 4326))();
 }
 ```
 
